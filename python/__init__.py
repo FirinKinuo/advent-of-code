@@ -1,4 +1,5 @@
 from os import path
+from datetime import datetime
 
 
 class SolvingBase:
@@ -12,3 +13,22 @@ class SolvingBase:
     def second_problem(self):
         """Solving first problem"""
         ...
+
+    def print_solutions(self):
+        start_first_solution = datetime.now()
+        first_problem = {
+            'result': self.first_problem(),
+            'time': datetime.now() - start_first_solution
+        }
+        start_second_solution = datetime.now()
+        second_problem = {
+            'result': self.second_problem(),
+            'time': datetime.now() - start_second_solution
+        }
+        print(f"""~~~First problem~~~
+        Time: {first_problem['time']}
+        Result: {first_problem['result']}""")
+
+        print(f"""~~~Second problem~~~
+        Time: {second_problem['time']}
+        Result: {second_problem['result']}""")
