@@ -15,6 +15,7 @@ class SolvingBase:
         ...
 
     def print_solutions(self):
+        print("===Troubleshooting Begins===")
         start_first_solution = datetime.now()
         first_problem = {
             'result': self.first_problem(),
@@ -32,3 +33,5 @@ class SolvingBase:
         print(f"""~~~Second problem~~~
         Time: {second_problem['time']}
         Result: {second_problem['result']}""")
+
+        print("===Problems solved===")
