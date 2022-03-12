@@ -11,7 +11,7 @@ class Solving(SolvingBase):
         with open('tape.txt', 'r', encoding="utf-8") as ticket_tape_file:
             self.ticket_tape = {attr[0]: attr[1] for attr in re.findall(self.ATTRIBUTES_RE, ticket_tape_file.read())}
 
-    def first_problem(self, check_calories: bool = False) -> int:
+    def first_problem(self) -> int:
         with open(self.test_case, 'r', encoding="utf-8") as file:
             for aunt in file.readlines():
                 if all(self.ticket_tape[attr[0]] == attr[1] for attr in re.findall(self.ATTRIBUTES_RE, aunt)):
