@@ -17,6 +17,7 @@ class Solving(SolvingBase):
 
 
 if __name__ == "__main__":
-    solve = Solving(test_case=False)
+    solve: Solving = Solving(test_case=False)
 
-    print(f"First Problem: {solve.first_problem()}\nSecond Problem: {solve.second_problem()}")
+    solve.print_solutions()
+   
