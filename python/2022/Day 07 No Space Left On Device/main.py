@@ -30,7 +30,7 @@ class Solving(SolvingBase):
         return dirs_sizes
 
     def first_problem(self):
-        return sum([dir_ for dir_ in self.dirs_sizes.values() if dir_ < 100000])
+        return sum(dir_size for dir_size in self.dirs_sizes.values() if dir_size < 100000)
 
     def second_problem(self):
         required: int = 30000000 - (70000000 - self.dirs_sizes[Path("/").resolve()])
