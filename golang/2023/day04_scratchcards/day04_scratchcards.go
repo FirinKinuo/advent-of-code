@@ -4,30 +4,25 @@ import (
 	"fmt"
 	"github.com/FirinKinuo/advent-of-code"
 	"log"
-	"path"
 	"slices"
 	"strconv"
 	"strings"
 )
 
 type Day struct {
-	problem *problem.Problem
-	cards   [][][]int
+	*problem.DayTemplate
+	cards [][][]int
 }
 
 func NewDay(inputType problem.InputType) (*Day, error) {
-	p, err := problem.NewProblem(path.Join("2023", "day04_scratchcards", string(inputType)))
+	template, err := problem.NewDayTemplate("2023", "day04_scratchcards", inputType)
 	if err != nil {
-		return nil, fmt.Errorf("new problem init: %s", err)
+		return nil, fmt.Errorf("new day template: %s", err)
 	}
-
-	return &Day{problem: p}, nil
+	return &Day{DayTemplate: template}, nil
 }
 
-func (d *Day) firstProblem(input string) int {
-	if d.cards == nil {
-		d.prepareInput(input)
-	}
+func (d *Day) FirstProblem() int {
 	points := 0
 
 	for _, card := range d.cards {
@@ -50,11 +45,7 @@ func (d *Day) firstProblem(input string) int {
 	return points
 }
 
-func (d *Day) secondProblem(input string) int {
-	if d.cards == nil {
-		d.prepareInput(input)
-	}
-
+func (d *Day) SecondProblem() int {
 	cardsInHand := make(map[int]int)
 	totalCards := 0
 
@@ -77,7 +68,7 @@ func (d *Day) secondProblem(input string) int {
 	return totalCards
 }
 
-func (d *Day) prepareInput(input string) {
+func (d *Day) PrepareInput(input string) {
 	inputCards := strings.Split(input, "\r\n")
 	d.cards = make([][][]int, len(inputCards))
 
@@ -101,20 +92,10 @@ func (d *Day) prepareInput(input string) {
 	}
 }
 
-func (d *Day) SolveProblems() {
-	solvers := []func(input string) int{
-		d.firstProblem,
-		d.secondProblem,
-	}
-
-	d.problem.Solve(solvers)
-}
-
 func main() {
 	day, err := NewDay(problem.ProblemInput)
 	if err != nil {
 		log.Fatalf("new day: %s", err)
 	}
-
-	day.SolveProblems()
+	day.Problem.Solve(day)
 }

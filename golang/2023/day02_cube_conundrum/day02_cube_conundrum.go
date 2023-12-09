@@ -4,30 +4,29 @@ import (
 	"fmt"
 	"github.com/FirinKinuo/advent-of-code"
 	"log"
-	"path"
 	"regexp"
 	"strconv"
 	"strings"
 )
 
 type Day struct {
-	problem *problem.Problem
-	games   []string
+	*problem.DayTemplate
+	games []string
 }
 
 func NewDay(inputType problem.InputType) (*Day, error) {
-	p, err := problem.NewProblem(path.Join("2023", "day02_cube_conundrum", string(inputType)))
+	template, err := problem.NewDayTemplate("2023", "day02_cube_conundrum", inputType)
 	if err != nil {
-		return nil, fmt.Errorf("new problem init: %s", err)
+		return nil, fmt.Errorf("new day template: %s", err)
 	}
-
-	return &Day{problem: p}, nil
+	return &Day{DayTemplate: template}, nil
 }
 
-func (d *Day) firstProblem(input string) int {
-	if d.games == nil {
-		d.games = strings.Split(input, "\r\n")
-	}
+func (d *Day) PrepareInput(input string) {
+	d.games = strings.Split(input, "\r\n")
+}
+
+func (d *Day) FirstProblem() int {
 	maxCubesForGame := map[string]int{
 		"red":   12,
 		"green": 13,
@@ -58,11 +57,7 @@ func (d *Day) isGamePossible(bags string, maxCubes map[string]int) bool {
 	return true
 }
 
-func (d *Day) secondProblem(input string) int {
-	if d.games == nil {
-		d.games = strings.Split(input, "\r\n")
-	}
-
+func (d *Day) SecondProblem() int {
 	sumPowGamesSets := 0
 
 	for i, gameString := range d.games {
@@ -93,20 +88,11 @@ func (d *Day) findMinimalPossibleCubesForGame(bags string) map[string]int {
 	return minimalCubes
 }
 
-func (d *Day) SolveProblems() {
-	solvers := []func(input string) int{
-		d.firstProblem,
-		d.secondProblem,
-	}
-
-	d.problem.Solve(solvers)
-}
-
 func main() {
 	day, err := NewDay(problem.ProblemInput)
 	if err != nil {
 		log.Fatalf("new day: %s", err)
 	}
 
-	day.SolveProblems()
+	day.Problem.Solve(day)
 }

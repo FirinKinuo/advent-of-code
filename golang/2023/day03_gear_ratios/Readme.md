@@ -45,10 +45,10 @@
 =========
 Problem #1
 Result: 559667
-Time: 1.1229ms
+Time: 672.817µs
 =========
 Problem #2
 Result: 86841457
-Time: 748.2µs
+Time: 141.499µs
 =========
 ```

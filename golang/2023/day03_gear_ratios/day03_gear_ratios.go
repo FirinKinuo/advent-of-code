@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"github.com/FirinKinuo/advent-of-code"
 	"log"
-	"path"
 	"strconv"
 	"strings"
 )
@@ -20,26 +19,21 @@ type gear struct {
 }
 
 type Day struct {
-	problem      *problem.Problem
+	*problem.DayTemplate
 	engineScheme []string
 	rowLen       int
 	gearsRow     [][]gear
 }
 
 func NewDay(inputType problem.InputType) (*Day, error) {
-	p, err := problem.NewProblem(path.Join("2023", "day03_gear_ratios", string(inputType)))
+	template, err := problem.NewDayTemplate("2023", "day03_gear_ratios", inputType)
 	if err != nil {
-		return nil, fmt.Errorf("new problem init: %s", err)
+		return nil, fmt.Errorf("new day template: %s", err)
 	}
-
-	return &Day{problem: p}, nil
+	return &Day{DayTemplate: template}, nil
 }
 
-func (d *Day) firstProblem(input string) int {
-	if d.gearsRow == nil {
-		d.scanGears(input)
-	}
-
+func (d *Day) FirstProblem() int {
 	gearsSum := 0
 
 	for rowIndex, gearsRow := range d.gearsRow {
@@ -57,7 +51,7 @@ func (d *Day) firstProblem(input string) int {
 	return gearsSum
 }
 
-func (d *Day) scanGears(input string) {
+func (d *Day) PrepareInput(input string) {
 	d.engineScheme = strings.Split(input, "\r\n")
 	d.rowLen = len(d.engineScheme)
 	d.gearsRow = make([][]gear, d.rowLen)
@@ -132,11 +126,7 @@ func (d *Day) countAdjacentNeighbors(gearRowIndex int, g gear) []gear {
 	return neighbors
 }
 
-func (d *Day) secondProblem(input string) int {
-	if d.gearsRow == nil {
-		d.scanGears(input)
-	}
-
+func (d *Day) SecondProblem() int {
 	gearsPowSum := 0
 
 	for rowIndex, gearsRow := range d.gearsRow {
@@ -160,20 +150,11 @@ func (d *Day) secondProblem(input string) int {
 	return gearsPowSum
 }
 
-func (d *Day) SolveProblems() {
-	solvers := []func(input string) int{
-		d.firstProblem,
-		d.secondProblem,
-	}
-
-	d.problem.Solve(solvers)
-}
-
 func main() {
 	day, err := NewDay(problem.ProblemInput)
 	if err != nil {
 		log.Fatalf("new day: %s", err)
 	}
 
-	day.SolveProblems()
+	day.Problem.Solve(day)
 }

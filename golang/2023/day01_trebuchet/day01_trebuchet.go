@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"github.com/FirinKinuo/advent-of-code"
 	"log"
-	"path"
 	"strconv"
 	"strings"
 )
@@ -21,23 +20,26 @@ var replacingLetters = map[string]string{
 	"nine":  "n9e",
 }
 
-type Day01 struct {
-	problem      *problem.Problem
-	calibrations []string
+type Day struct {
+	*problem.DayTemplate
+	calibrations                    []string
+	calibrationsWithReplacedLetters []string
 }
 
-func NewDay(inputType problem.InputType) (*Day01, error) {
-	p, err := problem.NewProblem(path.Join("2023", "day01_trebuchet", string(inputType)))
+func NewDay(inputType problem.InputType) (*Day, error) {
+	template, err := problem.NewDayTemplate("2023", "day01_trebuchet", inputType)
 	if err != nil {
-		return nil, fmt.Errorf("new problem init: %s", err)
+		return nil, fmt.Errorf("new day template: %s", err)
 	}
-
-	return &Day01{problem: p}, nil
+	return &Day{DayTemplate: template}, nil
 }
 
-func (d *Day01) firstProblem(input string) int {
+func (d *Day) PrepareInput(input string) {
 	d.calibrations = strings.Split(input, "\r\n")
+	d.calibrationsWithReplacedLetters = strings.Split(d.replaceLettersByDigits(input), "\r\n")
+}
 
+func (d *Day) FirstProblem() int {
 	calibrationSum := 0
 
 	for _, calibration := range d.calibrations {
@@ -47,19 +49,17 @@ func (d *Day01) firstProblem(input string) int {
 	return calibrationSum
 }
 
-func (d *Day01) secondProblem(input string) int {
-	d.calibrations = strings.Split(d.replaceLettersByDigits(input), "\r\n")
-
+func (d *Day) SecondProblem() int {
 	calibrationSum := 0
 
-	for _, calibration := range d.calibrations {
+	for _, calibration := range d.calibrationsWithReplacedLetters {
 		calibrationSum += d.findCalibrationValues(calibration)
 	}
 
 	return calibrationSum
 }
 
-func (d *Day01) findCalibrationValues(calibration string) int {
+func (d *Day) findCalibrationValues(calibration string) int {
 	calibrationValue := ""
 	var lastValue rune
 	for _, char := range calibration {
@@ -76,21 +76,12 @@ func (d *Day01) findCalibrationValues(calibration string) int {
 	return convertedValue
 }
 
-func (d *Day01) replaceLettersByDigits(data string) string {
+func (d *Day) replaceLettersByDigits(data string) string {
 	for letter, replaced := range replacingLetters {
 		data = strings.ReplaceAll(data, letter, replaced)
 	}
 
 	return data
-}
-
-func (d *Day01) SolveProblems() {
-	solvers := []func(input string) int{
-		d.firstProblem,
-		d.secondProblem,
-	}
-
-	d.problem.Solve(solvers)
 }
 
 func main() {
@@ -99,5 +90,5 @@ func main() {
 		log.Fatalf("new day: %s", err)
 	}
 
-	day.SolveProblems()
+	day.Problem.Solve(day)
 }

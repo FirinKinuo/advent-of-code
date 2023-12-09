@@ -14,6 +14,14 @@ const (
 	ProblemInput InputType = "input.txt"
 )
 
+type Solver interface {
+	Year() string
+	DayName() string
+	PrepareInput(input string)
+	FirstProblem() int
+	SecondProblem() int
+}
+
 type Problem struct {
 	input string
 }
@@ -34,20 +42,17 @@ func NewProblem(inputPath string) (*Problem, error) {
 	}, nil
 }
 
-func (p *Problem) Solve(solvers []func(input string) int) {
-	fmt.Println("Start solving problems\n=========")
-	solvingStopwatch := time.Now()
-	for i, solver := range solvers {
-		fmt.Printf("Problem #%d\n", i+1)
-		solverStopwatch := time.Now()
+func (p *Problem) Solve(solver Solver) {
+	fmt.Printf("\nStart solving %s: %s\n=========\n", solver.Year(), solver.DayName())
+	solver.PrepareInput(p.input)
+	p.solveAndPrint(solver.FirstProblem, 1)
+	p.solveAndPrint(solver.SecondProblem, 2)
+}
 
-		result := solver(p.input)
-
-		solvingTime := time.Now().Sub(solverStopwatch)
-
-		fmt.Printf("Result: %d\nTime: %s\n=========\n", result, solvingTime)
-	}
-
-	solvingTime := time.Now().Sub(solvingStopwatch)
-	fmt.Printf("Solved, total time: %s\n", solvingTime)
+func (p *Problem) solveAndPrint(solution func() int, problemNumber int) {
+	fmt.Printf("Problem #%d\n", problemNumber)
+	solverStopwatch := time.Now()
+	result := solution()
+	solvingTime := time.Now().Sub(solverStopwatch)
+	fmt.Printf("Result: %d\nTime: %s\n=========\n", result, solvingTime)
 }

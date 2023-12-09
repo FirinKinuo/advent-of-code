@@ -40,10 +40,10 @@ Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green
 =========
 Problem #1
 Result: 2632
-Time: 923.03µs
+Time: 833.253µs
 =========
 Problem #2
 Result: 69629
-Time: 860.821µs
+Time: 1.02113ms
 =========
 ```
