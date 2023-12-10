@@ -16,7 +16,7 @@ type Day struct {
 }
 
 func NewDay(inputType problem.InputType) (*Day, error) {
-	template, err := problem.NewDayTemplate("2023", "day_6_wait_for_it", inputType)
+	template, err := problem.NewDayTemplate("2023", "day_06_wait_for_it", inputType)
 	if err != nil {
 		return nil, fmt.Errorf("new day template: %s", err)
 	}
