@@ -3,9 +3,9 @@ RUN := CGO_ENABLED=0 go run -ldflags $(LDFLAGS)
 
 RUN_2023:= $(RUN) ./2023
 
-.PHONY: 2023 2023_01 2023_02 2023_03 2023_04 2023_05 2023_06 2023_07
+.PHONY: 2023 2023_01 2023_02 2023_03 2023_04 2023_05 2023_06 2023_07 2023_09
 
-2023: 2023_01 2023_02 2023_03 2023_04 2023_05 2023_06 2023_07
+2023: 2023_01 2023_02 2023_03 2023_04 2023_05 2023_06 2023_07 2023_09
 
 2023_01:
 	$(RUN_2023)/day01_trebuchet/day01_trebuchet.go
@@ -23,3 +23,5 @@ RUN_2023:= $(RUN) ./2023
 	$(RUN_2023)/day07_camel_cards/day07_camel_cards.go
 2023_08:
 	$(RUN_2023)/day08_haunted_wasteland/day08_haunted_wasteland.go
+2023_09:
+	$(RUN_2023)/day09_mirage_maintenance/day09_mirage_maintenance.go
