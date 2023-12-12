@@ -21,3 +21,5 @@ RUN_2023:= $(RUN) ./2023
 	$(RUN_2023)/day06_wait_for_it/day06_wait_for_it.go
 2023_07:
 	$(RUN_2023)/day07_camel_cards/day07_camel_cards.go
+2023_08:
+	$(RUN_2023)/day08_haunted_wasteland/day08_haunted_wasteland.go
