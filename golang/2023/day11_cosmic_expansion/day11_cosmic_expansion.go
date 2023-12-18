@@ -96,7 +96,7 @@ func (d *Day) FirstProblem() int {
 }
 
 func (d *Day) SecondProblem() int {
-	d.findGalaxiesCoords(999_999_999)
+	d.findGalaxiesCoords(999_999)
 	return d.sumPairsDistances()
 }
 
