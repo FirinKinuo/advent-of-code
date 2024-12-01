@@ -22,3 +22,13 @@ func ReverseStringsSlice(in []string) []string {
 	}
 	return reversed
 }
+
+func CountInSlice[T comparable](slice []T, value T) int {
+	count := 0
+	for _, v := range slice {
+		if v == value {
+			count++
+		}
+	}
+	return count
+}
