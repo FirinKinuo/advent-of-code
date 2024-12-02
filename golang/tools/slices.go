@@ -1,5 +1,7 @@
 package tools
 
+import "cmp"
+
 func TransposingStringsSlice(in []string) []string {
 	numRows := len(in)
 	numCols := len(in[0])
@@ -31,4 +33,23 @@ func CountInSlice[T comparable](slice []T, value T) int {
 		}
 	}
 	return count
+}
+
+func IsMonotonic[T cmp.Ordered](nums []T) (index int, ok bool) {
+	increasing, decreasing := false, false
+
+	for i := 1; i < len(nums); i++ {
+		if nums[i] > nums[i-1] {
+			increasing = true
+		} else if nums[i] < nums[i-1] {
+			decreasing = true
+		}
+
+		if increasing && decreasing {
+			index = i
+			return index, false
+		}
+	}
+
+	return -1, true
 }
