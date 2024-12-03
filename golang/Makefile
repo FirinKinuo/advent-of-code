@@ -72,3 +72,7 @@ RUN_2024:= $(RUN) ./2024
 .PHONY: 2024_02
 2024_02:
 	$(RUN_2024)/day02_red-nosed_reports/day02_red-nosed_reports.go
+
+.PHONY: 2024_03
+2024_03:
+	$(RUN_2024)/day03_mull_it_over/day03_mull_it_over.go
