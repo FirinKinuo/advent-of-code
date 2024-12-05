@@ -7,3 +7,13 @@ func MustAtoi(in string) int {
 
 	return value
 }
+
+func AtoiSlice(in []string) []int {
+	out := make([]int, len(in))
+
+	for i := range in {
+		out[i] = MustAtoi(in[i])
+	}
+
+	return out
+}
