@@ -53,3 +53,14 @@ func IsMonotonic[T cmp.Ordered](nums []T) (index int, ok bool) {
 
 	return -1, true
 }
+
+func Copy2DSlice[T any](src [][]T) [][]T {
+	dest := make([][]T, len(src))
+
+	for i := range src {
+		dest[i] = make([]T, len(src[i]))
+		copy(dest[i], src[i])
+	}
+
+	return dest
+}

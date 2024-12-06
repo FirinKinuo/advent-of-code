@@ -84,3 +84,7 @@ RUN_2024:= $(RUN) ./2024
 .PHONY: 2024_05
 2024_05:
 	$(RUN_2024)/day05_print_queue/day05_print_queue.go
+
+.PHONY: 2024_06
+2024_06:
+	$(RUN_2024)/day06_guard_gallivant/day06_guard_gallivant.go
