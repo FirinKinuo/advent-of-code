@@ -1,3 +1,3 @@
 module github.com/FirinKinuo/advent-of-code
 
-go 1.21
+go 1.23
