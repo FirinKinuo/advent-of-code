@@ -92,3 +92,7 @@ RUN_2024:= $(RUN) ./2024
 .PHONY: 2024_07
 2024_07:
 	$(RUN_2024)/day07_bridge_repair/day07_bridge_repair.go
+
+.PHONY: 2024_08
+2024_08:
+	$(RUN_2024)/day08_resonant_collinearity/day08_resonant_collinearity.go
