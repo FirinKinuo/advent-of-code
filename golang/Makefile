@@ -96,3 +96,7 @@ RUN_2024:= $(RUN) ./2024
 .PHONY: 2024_08
 2024_08:
 	$(RUN_2024)/day08_resonant_collinearity/day08_resonant_collinearity.go
+
+.PHONY: 2024_09
+2024_09:
+	$(RUN_2024)/day09_disk_fragmenter/day09_disk_fragmenter.go
