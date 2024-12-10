@@ -100,3 +100,7 @@ RUN_2024:= $(RUN) ./2024
 .PHONY: 2024_09
 2024_09:
 	$(RUN_2024)/day09_disk_fragmenter/day09_disk_fragmenter.go
+
+.PHONY: 2024_10
+2024_10:
+	$(RUN_2024)/day10_hoof_it/day10_hoof_it.go
