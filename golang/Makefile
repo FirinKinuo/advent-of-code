@@ -108,3 +108,7 @@ RUN_2024:= $(RUN) ./2024
 .PHONY: 2024_11
 2024_11:
 	$(RUN_2024)/day11_plutonian_pebbles/day11_plutonian_pebbles.go
+
+.PHONY: 2024_12
+2024_12:
+	$(RUN_2024)/day12_garden_groups/day12_garden_groups.go
