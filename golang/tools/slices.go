@@ -1,6 +1,9 @@
 package tools
 
-import "cmp"
+import (
+	"cmp"
+	"image"
+)
 
 func TransposingStringsSlice(in []string) []string {
 	numRows := len(in)
@@ -63,4 +66,8 @@ func Copy2DSlice[T any](src [][]T) [][]T {
 	}
 
 	return dest
+}
+
+func PointFromSlice(nums []int) image.Point {
+	return image.Point{X: nums[0], Y: nums[1]}
 }

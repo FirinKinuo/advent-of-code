@@ -112,3 +112,11 @@ RUN_2024:= $(RUN) ./2024
 .PHONY: 2024_12
 2024_12:
 	$(RUN_2024)/day12_garden_groups/day12_garden_groups.go
+
+.PHONY: 2024_13
+2024_12:
+	$(RUN_2024)/day13_claw_contraption/day13_claw_contraption.go
+
+.PHONY: 2024_14
+2024_14:
+	$(RUN_2024)/day14_restroom_redoubt/day14_restroom_redoubt.go
