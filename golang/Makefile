@@ -120,3 +120,9 @@ RUN_2024:= $(RUN) ./2024
 .PHONY: 2024_14
 2024_14:
 	$(RUN_2024)/day14_restroom_redoubt/day14_restroom_redoubt.go
+
+RUN_2025:= $(RUN) ./2025
+
+.PHONY: 2025_01
+2025_01:
+	$(RUN_2025)/day01_secret_entrance/day01_secret_entrance.go

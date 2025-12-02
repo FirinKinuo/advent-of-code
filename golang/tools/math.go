@@ -8,3 +8,13 @@ func Abs[T int | int32 | int64 | float32 | float64](x T) T {
 
 	return x
 }
+
+func Sign[T ~int | ~int64 | ~float64](x T) int {
+	if x < 0 {
+		return -1
+	}
+	if x > 0 {
+		return 1
+	}
+	return 0
+}
