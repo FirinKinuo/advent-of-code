@@ -87,5 +87,9 @@ func Copy2DSlice[T any](src [][]T) [][]T {
 }
 
 func PointFromSlice(nums []int) image.Point {
+	if len(nums) != 2 {
+		panic("nums != 2")
+	}
+
 	return image.Point{X: nums[0], Y: nums[1]}
 }

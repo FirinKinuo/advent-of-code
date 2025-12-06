@@ -3,7 +3,10 @@ package tools
 import "strconv"
 
 func MustAtoi(in string) int {
-	value, _ := strconv.Atoi(in)
+	value, err := strconv.Atoi(in)
+	if err != nil {
+		panic(err)
+	}
 
 	return value
 }

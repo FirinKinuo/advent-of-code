@@ -1,12 +1,12 @@
 package tools
 
-func FindLCM(a, b int) int {
+func FindLCM[T Integer](a, b T) T {
 	return a * b / FindGCD(a, b)
 }
 
-func FindLCMOfSlice(numbers []int) int {
+func FindLCMOfSlice[T Integer](numbers []T) T {
 	if len(numbers) < 2 {
-		panic("FindLCMOfSlice: slice must have at least 2 elements")
+		panic("slice must have at least 2 elements")
 	}
 
 	lcm := numbers[0]
@@ -17,7 +17,7 @@ func FindLCMOfSlice(numbers []int) int {
 	return lcm
 }
 
-func FindGCD(a, b int) int {
+func FindGCD[T Integer](a, b T) T {
 	for b != 0 {
 		a, b = b, a%b
 	}
