@@ -142,3 +142,7 @@ RUN_2025:= $(RUN) ./2025
 .PHONY: 2025_05
 2025_05:
 	$(RUN_2025)/day05_cafeteria/day05_cafeteria.go
+
+.PHONY: 2025_06
+2025_06:
+	$(RUN_2025)/day06_trash_compactor/day06_trash_compactor.go

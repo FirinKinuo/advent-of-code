@@ -20,6 +20,24 @@ func TransposingStringsSlice(in []string) []string {
 	return transposedPatterns
 }
 
+func Transpose[T any](matrix [][]T) [][]T {
+	rows := len(matrix)
+	cols := len(matrix[0])
+
+	result := make([][]T, cols)
+	for i := range result {
+		result[i] = make([]T, rows)
+	}
+
+	for i := 0; i < rows; i++ {
+		for j := 0; j < cols; j++ {
+			result[j][i] = matrix[i][j]
+		}
+	}
+
+	return result
+}
+
 func ReverseStringsSlice(in []string) []string {
 	reversed := make([]string, len(in))
 	for i, j := len(in)-1, 0; i >= 0; i, j = i-1, j+1 {
