@@ -18,3 +18,9 @@ func (u UniqueAny) Exists(element any) bool {
 	_, ok := u[element]
 	return ok
 }
+
+type Point3D struct {
+	X int
+	Y int
+	Z int
+}
