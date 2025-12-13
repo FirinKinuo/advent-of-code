@@ -162,3 +162,7 @@ RUN_2025:= $(RUN) ./2025
 .PHONY: 2025_11
 2025_11:
 	$(RUN_2025)/day11_reactor/day11_reactor.go
+
+.PHONY: 2025_12
+2025_12:
+	$(RUN_2025)/day12_christmas_tree_farm/day12_christmas_tree_farm.go
