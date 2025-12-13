@@ -1,0 +1,71 @@
+<h2>--- Day 11: Reactor ---</h2><p>You hear some loud beeping coming from a hatch in the floor of the factory, so you decide to check it out. Inside, you find several large electrical conduits and a ladder.</p>
+<p>Climbing down the ladder, you discover the source of the <span title="The beeping is unrelated to the issue with the server rack. The reactor is just hungry.">beeping</span>: a large, toroidal reactor which powers the factory above. Some Elves here are hurriedly running between the reactor and a nearby server rack, apparently trying to fix something.</p>
+<p>One of the Elves notices you and rushes over. &#34;It&#39;s a good thing you&#39;re here! We just installed a new <em>server rack</em>, but we aren&#39;t having any luck getting the reactor to communicate with it!&#34; You glance around the room and see a tangle of cables and devices running from the server rack to the reactor. She rushes off, returning a moment later with a list of the devices and their outputs (your puzzle input).</p>
+<p>For example:</p>
+<pre><code>aaa: you hhh
+you: bbb ccc
+bbb: ddd eee
+ccc: ddd eee fff
+ddd: ggg
+eee: out
+fff: out
+ggg: out
+hhh: ccc fff iii
+iii: out
+</code></pre>
+<p>Each line gives the name of a device followed by a list of the devices to which its outputs are attached. So, <code>bbb: ddd eee</code> means that device <code>bbb</code> has two outputs, one leading to device <code>ddd</code> and the other leading to device <code>eee</code>.</p>
+<p>The Elves are pretty sure that the issue isn&#39;t due to any specific device, but rather that the issue is triggered by data following some specific <em>path</em> through the devices. Data only ever flows from a device through its outputs; it can&#39;t flow backwards.</p>
+<p>After dividing up the work, the Elves would like you to focus on the devices starting with the one next to you (an Elf hastily attaches a label which just says <em><code>you</code></em>) and ending with the main output to the reactor (which is the device with the label <em><code>out</code></em>).</p>
+<p>To help the Elves figure out which path is causing the issue, they need you to find <em>every</em> path from <code>you</code> to <code>out</code>.</p>
+<p>In this example, these are all of the paths from <code>you</code> to <code>out</code>:</p>
+<ul>
+<li>Data could take the connection from <code>you</code> to <code>bbb</code>, then from <code>bbb</code> to <code>ddd</code>, then from <code>ddd</code> to <code>ggg</code>, then from <code>ggg</code> to <code>out</code>.</li>
+<li>Data could take the connection to <code>bbb</code>, then to <code>eee</code>, then to <code>out</code>.</li>
+<li>Data could go to <code>ccc</code>, then <code>ddd</code>, then <code>ggg</code>, then <code>out</code>.</li>
+<li>Data could go to <code>ccc</code>, then <code>eee</code>, then <code>out</code>.</li>
+<li>Data could go to <code>ccc</code>, then <code>fff</code>, then <code>out</code>.</li>
+</ul>
+<p>In total, there are <code><em>5</em></code> different paths leading from <code>you</code> to <code>out</code>.</p>
+<p><em>How many different paths lead from <code>you</code> to <code>out</code>?</em></p>
+
+<h2 id="part2">--- Part Two ---</h2><p>Thanks in part to your analysis, the Elves have figured out a little bit about the issue. They now know that the problematic data path passes through both <code>dac</code> (a <a href="https://en.wikipedia.org/wiki/Digital-to-analog_converter" target="_blank">digital-to-analog converter</a>) and <code>fft</code> (a device which performs a <a href="https://en.wikipedia.org/wiki/Fast_Fourier_transform" target="_blank">fast Fourier transform</a>).</p>
+<p>They're still not sure which specific path is the problem, and so they now need you to find every path from <code>svr</code> (the server rack) to <code>out</code>. However, the paths you find must all also visit both <code>dac</code> <em>and</em> <code>fft</code> (in any order).</p>
+<p>For example:</p>
+<pre><code>svr: aaa bbb
+aaa: fft
+fft: ccc
+bbb: tty
+tty: ccc
+ccc: ddd eee
+ddd: hub
+hub: fff
+eee: dac
+dac: fff
+fff: ggg hhh
+ggg: out
+hhh: out
+</code></pre>
+<p>This new list of devices contains many paths from <code>svr</code> to <code>out</code>:</p>
+<pre><code>svr,aaa,<em>fft</em>,ccc,ddd,hub,fff,ggg,out
+svr,aaa,<em>fft</em>,ccc,ddd,hub,fff,hhh,out
+svr,aaa,<em>fft</em>,ccc,eee,<em>dac</em>,fff,ggg,out
+svr,aaa,<em>fft</em>,ccc,eee,<em>dac</em>,fff,hhh,out
+svr,bbb,tty,ccc,ddd,hub,fff,ggg,out
+svr,bbb,tty,ccc,ddd,hub,fff,hhh,out
+svr,bbb,tty,ccc,eee,<em>dac</em>,fff,ggg,out
+svr,bbb,tty,ccc,eee,<em>dac</em>,fff,hhh,out
+</code></pre>
+<p>However, only <em><code>2</code></em> paths from <code>svr</code> to <code>out</code> visit both <code>dac</code> and <code>fft</code>.</p>
+<p>Find all of the paths that lead from <code>svr</code> to <code>out</code>. <em>How many of those paths visit both <code>dac</code> and <code>fft</code>?</em></p>
+
+```
+=========
+Problem #1
+Result: 552
+Time: 24.767µs
+=========
+Problem #2
+Result: 307608674109300
+Time: 288.728µs
+=========
+```

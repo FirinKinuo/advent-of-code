@@ -11,6 +11,7 @@ type InputType string
 
 const (
 	TestInput    InputType = "test.txt"
+	Test2Input   InputType = "test2.txt" // Test2Input for some days, where we have 2 different test inputs
 	ProblemInput InputType = "input.txt"
 )
 
